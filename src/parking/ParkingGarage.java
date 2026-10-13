@@ -10,16 +10,12 @@ public class ParkingGarage {
     private double total;
 
     public double fee(Vehicle vehicle, int hours) {
-        switch (vehicle.getType()) {
-            case "CAR":
-                return hours * 5.0;
-            case "MOTORBIKE":
-                return hours * 2.0;
-            case "TRUCK":
-                return 20 + hours * 10.0;
-            default:
-                throw new IllegalArgumentException(vehicle.getType());
-        }
+        return switch (vehicle.getType()) {
+            case "CAR" -> hours * 5.0;
+            case "MOTORBIKE" -> hours * 2.0;
+            case "TRUCK" -> 20 + hours * 10.0;
+            default -> throw new IllegalArgumentException(vehicle.getType());
+        };
     }
 
     public void checkout(Vehicle vehicle, int hours, PaymentMethod method)
